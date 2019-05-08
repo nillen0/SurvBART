@@ -23,8 +23,9 @@ QuantEst = function(PosteriorDraws, Times, Quantiles, CredLevel) {
     BARTLower = sum(CredInt[1,] > cut) + 1
     BARTUpper = sum(CredInt[2,] > cut) + 1 
     
-    c(Times[BARTIndex], Times[BARTLower], Times[BARTUpper])
+    c("Mean" = Times[BARTIndex], "Lower" = Times[BARTLower], "Upper" = Times[BARTUpper])
   })
   
+
   return(temp)
 }
