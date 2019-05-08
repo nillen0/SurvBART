@@ -26,6 +26,7 @@ QuantEst = function(PosteriorDraws, Times, Quantiles, CredLevel) {
     c("Mean" = Times[BARTIndex], "Lower" = Times[BARTLower], "Upper" = Times[BARTUpper])
   })
   
+  colnames(temp) = Quantiles
 
   return(temp)
 }
