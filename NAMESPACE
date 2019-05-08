@@ -3,5 +3,7 @@
 export(CredibleInt)
 export(ObtainPost)
 export(ParallelWindows)
+export(QuantEst)
 export(SimulateData)
+export(SurvEst)
 import(BART)
