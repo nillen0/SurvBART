@@ -13,7 +13,8 @@
 #' @export
 
 KMQuant = function(Times, Event, Quantiles, Predictors = 1, ConfLevel) {
-  KMFit = survfit(Surv(Times, Event) ~ Predictors, conf.int = ConfLevel)
+  formula = as.formula(paste("Surv(Times, Event) ~ ", Predictors))
+  KMFit = survfit(formula, conf.int = 0.95)
   
   Estimates = quantile(KMFit, Quantiles)
   
@@ -27,3 +28,6 @@ KMQuant = function(Times, Event, Quantiles, Predictors = 1, ConfLevel) {
   
   return(KMRes)
 }
+
+
+
