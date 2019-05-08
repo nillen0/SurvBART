@@ -2,6 +2,7 @@
 #' 
 #' This function allows the user to plot the estimated survival curve
 #' along with its credible interval.
+#' @import graphics
 #' @param PosteriorDraws Matrix of draws from the posterior distribution
 #' of the survival function
 #' @param UniqueTimes The unique times of observation or censoring
