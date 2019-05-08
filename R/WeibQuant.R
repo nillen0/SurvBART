@@ -9,7 +9,7 @@
 #' @param Quantiles Quantiles we wish to estimate
 #' @param ConfLevel The desired confidence level on which to construct
 #' confidence intervals for the quantiles
-#' @expot
+#' @export
 
 WeibQuant = function(Times, Event, Predictors, Quantiles, ConfLevel) {
   
@@ -18,7 +18,8 @@ WeibQuant = function(Times, Event, Predictors, Quantiles, ConfLevel) {
   
   temp = predict(WeibFit, type = "quantile", p = Quantiles, se.fit = T)
   
-  cut = 1-ConfLevel/2
+  diff = (1 - ConfLevel)/2
+  cut = 1- diff
   Z = qnorm(cut, mean = 0, sd = 1)
   
   WeibPoint = temp$fit[1,]
