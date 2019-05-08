@@ -4,7 +4,7 @@
 \alias{PlotSurv}
 \title{Plot BART estimated Survival Curves}
 \usage{
-PlotSurv(PosteriorDraws, UniqueTimes, CredLevel)
+PlotSurv(PosteriorDraws, UniqueTimes, CredLevel = 0.95)
 }
 \arguments{
 \item{PosteriorDraws}{Matrix of draws from the posterior distribution

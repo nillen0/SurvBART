@@ -44,7 +44,11 @@ ObtainPost = function(TrainX = NULL, Times, Event, TestX = NULL,
     }
   }
   
-  return(Post)
+  UniqueTimes = sort(unique(Times))
+  
+  temp = list(surv = Post, time = UniqueTimes)
+  
+  return(temp)
   
 }
 

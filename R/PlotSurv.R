@@ -10,7 +10,7 @@
 #' @export
 
 
-PlotSurv = function(PosteriorDraws, UniqueTimes, CredLevel) {
+PlotSurv = function(PosteriorDraws, UniqueTimes, CredLevel = 0.95) {
   
   # Find mean:
   MeanSurv = SurvEst(PosteriorDraws = PosteriorDraws)
