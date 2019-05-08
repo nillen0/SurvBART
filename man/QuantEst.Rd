@@ -7,6 +7,9 @@
 QuantEst(PosteriorDraws, Times, Quantiles, CredLevel)
 }
 \arguments{
+\item{PosteriorDraws}{Matrix of random draws from the posterior distribution
+of the survival curve.}
+
 \item{Times}{Vector of unique time points}
 
 \item{Quantiles}{Quantiles to be estimated}

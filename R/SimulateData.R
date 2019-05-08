@@ -1,6 +1,7 @@
 #' Simulate Data
 #' 
 #' A function to simulate data as specified in Sparparani et al. (2016)
+#' @import stats
 #' @param n Desired sample size
 #' @param censoring.rate Desired censoring rate, either 0.2 or 0.5
 #' @keywords simulate weibull

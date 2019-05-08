@@ -19,7 +19,7 @@ ObtainPost = function(TrainX = NULL, Times, Event, TestX = NULL,
   
   if (parallel == F) {
     
-    Post = BART::surv.bart(times = Data$time, delta = Data$event)
+    Post = BART::surv.bart(times = Times, delta = Event)
     
   } else {
     

@@ -1,11 +1,12 @@
 Package: SurvBART
 Title: BART for Survival Analysis
 Version: 0.0.0.9000
-Imports: BART
+Imports: BART, doParallel, foreach, stats
 Author: Nicholas Illenberger <nillen@pennmedicine.upenn.edu>
-Description: Perform simulations on BART for survival analysis
+Maintainer: Nicholas Illenberger <nillen@pennmedicine.upenn.edu>
+Description: This package helps replicate the simulations of Sparapani et al. (2016). That is, it contains all the functionality needed to simulate the data under the specifications of the authors, as well as the functions needed to analyze the data.
 Depends: R (>= 3.6.0)
-License: What license is it under?
+License: GPL-2
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1

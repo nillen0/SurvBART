@@ -2,7 +2,8 @@
 #' 
 #' Estimates the quantiles of the survival function along with credible bounds
 #' based upon draws from the posterior distribution
-#' @param PosteriorDraws
+#' @param PosteriorDraws Matrix of random draws from the posterior distribution
+#' of the survival curve.
 #' @param Times Vector of unique time points
 #' @param Quantiles Quantiles to be estimated
 #' @param CredLevel Credible level for upper and lower bounds of quantile estimate
