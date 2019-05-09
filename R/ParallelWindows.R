@@ -3,6 +3,7 @@
 #' Function which runs in parallel to obtain posterior draws of the survival function 
 #' on a non-unix based machine.
 #' @import BART
+#' @importFrom parallel makeCluster stopCluster
 #' @import doParallel
 #' @import foreach
 #' @param TrainX Explanatory variables for training (in sample) data. 
@@ -21,6 +22,9 @@ ParallelWindows = function(TrainX, Times, Event, TestX, NumCores) {
   
   # Obtain
   i = 1:NumCores
+  
+  cl = makeCluster(NumCores)
+  registerDoParallel(cl)
   temp = foreach(i, .packages = "BART") %dopar% {
     SomePost = BART::surv.bart(times = Times,
                                delta = Event,
@@ -28,6 +32,7 @@ ParallelWindows = function(TrainX, Times, Event, TestX, NumCores) {
     out = SomePost$surv.test
     out
   }
+  stopCluster(cl)
   
   Post = do.call(rbind, temp)
   return(Post)
