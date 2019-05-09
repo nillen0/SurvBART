@@ -6,7 +6,7 @@
 #' @param CensoringRate Desired Censoring Rate, either 0.2 or 0.5
 #' @export
 
-Simulation = function(OneSample = T, n, CensoringRate) {
+Simulation = function(OneSample = T, n, CensoringRate, Parallel = F, NumCores = 2) {
   
   if (OneSample == T) {
     # One Sample Code ----
@@ -17,7 +17,7 @@ Simulation = function(OneSample = T, n, CensoringRate) {
     # Obtain Posterior Draws:
     PostDraws = ObtainPost(Times = Data$time,
                            Event = Data$event,
-                           parallel = T, NumCores = 2)
+                           parallel = Parallel, NumCores = NumCores)
     
     # Get Estimated Quantiles with confidence bounds:
     Quants = QuantAll(PosteriorDraws = PostDraws$surv,
