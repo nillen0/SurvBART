@@ -20,18 +20,31 @@ ParallelWindows = function(TrainX, Times, Event, TestX, NumCores) {
   HowMany = 1000 %/% NumCores
   leftover = 1000 - HowMany*NumCores
   
-  # Obtain
+  
+  # Get most of the posterior draws in parallel:
   i = 1:NumCores
   cl = makeCluster(NumCores)
   registerDoParallel(cl)
   temp = foreach(i, .packages = "BART") %dopar% {
-    SomePost = BART::surv.bart(times = Times,
-                               delta = Event,
-                               ndpost = HowMany + (i == NumCores)*leftover)
+    SomePost = surv.bart(times = Times,
+                         delta = Event,
+                         ndpost = HowMany)
     out = SomePost$surv.test
     out
   }
   
+  # Combine first set of results:
   Post = do.call(rbind, temp)
+  
+  # FINISH THEM!
+  if (leftover != 0){
+    LeftPost = surv.bart(times = Times,
+                         delta = Event,
+                         ndpost = leftover)
+    out = LeftPost$surv.test
+    
+    Post = rbind(Post, out)
+  }
+  
   return(Post)
 }
