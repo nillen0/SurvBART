@@ -23,8 +23,6 @@ ParallelWindows = function(TrainX, Times, Event, TestX, NumCores) {
   
   # Get most of the posterior draws in parallel:
   i = 1:NumCores
-  cl = makeCluster(NumCores)
-  registerDoParallel(cl)
   temp = foreach(i, .packages = "BART") %dopar% {
     SomePost = surv.bart(times = Times,
                          delta = Event,
