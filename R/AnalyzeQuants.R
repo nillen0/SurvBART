@@ -8,6 +8,7 @@
 #' @export
 
 AnalyzeQuants = function(QuantMatrix, Quantiles, shape, scale) {
+  QuantMatrix[is.na(QuantMatrix)] = Inf
   TrueVals = qweibull(Quantiles, shape = shape, scale = scale)
   
   CoverMat = sapply(1:length(Quantiles), function(i) {

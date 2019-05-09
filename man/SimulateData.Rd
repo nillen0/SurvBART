@@ -4,12 +4,15 @@
 \alias{SimulateData}
 \title{Simulate Data}
 \usage{
-SimulateData(n, censoring.rate)
+SimulateData(n, censoring.rate, TwoSample = F)
 }
 \arguments{
 \item{n}{Desired sample size}
 
 \item{censoring.rate}{Desired censoring rate, either 0.2 or 0.5}
+
+\item{TwoSample}{Do you want to simulate under the two-sample settings
+described in Sparapani (2016)?}
 }
 \description{
 A function to simulate data as specified in Sparparani et al. (2016)
