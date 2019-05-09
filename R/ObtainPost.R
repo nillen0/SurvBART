@@ -1,7 +1,7 @@
 #' Obtain Posterior Draws
 #' 
 #' Function to obtain draws from the posterior distribution of the survival curve.
-#' @import BART
+#' @importFrom BART surv.bart
 #' @param TrainX Explanatory variables for training (in sample) data. 
 #' Must be a matrix with rows corresponding to observations and columns to variables
 #' @param Times The time of event or right-censoring

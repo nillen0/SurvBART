@@ -2,7 +2,7 @@
 #' 
 #' Function which runs in parallel to obtain posterior draws of the 
 #' survival function on a unix based machine
-#' @import BART
+#' @importFrom BART mc.surv.bart
 #' @param TrainX Explanatory variables for training (in sample) data. 
 #' Must be a matrix with rows corresponding to observations and columns to variables
 #' @param Times The time of event or right-censoring

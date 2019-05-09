@@ -7,9 +7,12 @@
 #' @param Parallel Run the function in parallel
 #' @param NumCores If parallel, number of cores to use
 #' @param seed Set random seed number
+#' @param save.output Do you want to save results?
+#' @param file.path Where to save
 #' @export
 
-Simulation = function(OneSample = T, n, CensoringRate, Parallel = F, NumCores = 2, seed) {
+Simulation = function(OneSample = T, n, CensoringRate, Parallel = F, NumCores = 2, seed,
+                      save.output = F, file.path = NULL) {
   
   if (OneSample == T) {
     # One Sample Code ----
@@ -50,6 +53,11 @@ Simulation = function(OneSample = T, n, CensoringRate, Parallel = F, NumCores = 
     
   }
   
+  if (save.output == T) {
+      saveRDS(Results, file.path)
+  }
+  
   return(Results)
+  
 }
 

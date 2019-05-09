@@ -3,7 +3,7 @@
 #' Estimates quantiles of a survival function using the Kaplan-Meier Product
 #' Limit Estimator. Returns a matrix of point estimates of the quantiles
 #' along with confidence intervals.
-#' @import survival
+#' @importFrom survival survfit
 #' @param Times Observed times of event or right-censoring
 #' @param Event Indicator of whether a unit is observed (1) or censored(0)
 #' @param Quantiles The quantiles we wish to estimate
