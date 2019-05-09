@@ -4,7 +4,7 @@
 \alias{ParallelWindows}
 \title{Obtain Posterior Draws on a non unix machine}
 \usage{
-ParallelWindows(TrainX, Times, Event, TestX, NumCores, seed)
+ParallelWindows(TrainX, Times, Event, TestX, NumCores)
 }
 \arguments{
 \item{TrainX}{Explanatory variables for training (in sample) data. 
@@ -18,8 +18,6 @@ Must be a matrix with rows corresponding to observations and columns to variable
 have the same structure as TrainX}
 
 \item{NumCores}{Number of cores to run on, default is 2}
-
-\item{seed}{Random seed, only used for parallelization}
 }
 \description{
 Function which runs in parallel to obtain posterior draws of the survival function 

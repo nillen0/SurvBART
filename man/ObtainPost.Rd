@@ -5,7 +5,7 @@
 \title{Obtain Posterior Draws}
 \usage{
 ObtainPost(TrainX = NULL, Times, Event, TestX = NULL, parallel = F,
-  NumCores = 2, seed = 807)
+  NumCores = 2)
 }
 \arguments{
 \item{TrainX}{Explanatory variables for training (in sample) data. 
@@ -21,8 +21,6 @@ have the same structure as TrainX}
 \item{parallel}{Whether to obtain posterior draws across multiple cores.}
 
 \item{NumCores}{Number of cores to run on, default is 2}
-
-\item{seed}{Random seed, only used for parallelization}
 }
 \description{
 Function to obtain draws from the posterior distribution of the survival curve.

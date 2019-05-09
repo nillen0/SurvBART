@@ -10,16 +10,16 @@
 #' have the same structure as TrainX 
 #' @param parallel Whether to obtain posterior draws across multiple cores.
 #' @param NumCores Number of cores to run on, default is 2
-#' @param seed Random seed, only used for parallelization
 #' @export
 
 
 ObtainPost = function(TrainX = NULL, Times, Event, TestX = NULL,
-                      parallel = F, NumCores = 2, seed = 807) {
+                      parallel = F, NumCores = 2) {
   
   if (parallel == F) {
     
-    Post = BART::surv.bart(times = Times, delta = Event)
+    temp = BART::surv.bart(times = Times, delta = Event)
+    Post = temp$surv.test
     
   } else {
     
@@ -29,8 +29,7 @@ ObtainPost = function(TrainX = NULL, Times, Event, TestX = NULL,
                              Times = Times,
                              Event = Event,
                              TestX = TestX,
-                             NumCores = NumCores,
-                             seed = seed)
+                             NumCores = NumCores)
       
     } else {
       
@@ -38,8 +37,7 @@ ObtainPost = function(TrainX = NULL, Times, Event, TestX = NULL,
                           Times = Times,
                           Event = Event,
                           TestX = TestX,
-                          NumCores = NumCores,
-                          seed = seed)
+                          NumCores = NumCores)
       
     }
   }

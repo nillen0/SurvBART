@@ -12,10 +12,9 @@
 #' @param TestX Explanatory variables for test (out of sample) data. Must be a matrix and 
 #' have the same structure as TrainX 
 #' @param NumCores Number of cores to run on, default is 2
-#' @param seed Random seed, only used for parallelization
 #' @export
 
-ParallelWindows = function(TrainX, Times, Event, TestX, NumCores, seed) {
+ParallelWindows = function(TrainX, Times, Event, TestX, NumCores) {
   # How many draws from each:
   HowMany = 1000 %/% NumCores
   leftover = 1000 - HowMany*NumCores
@@ -23,7 +22,6 @@ ParallelWindows = function(TrainX, Times, Event, TestX, NumCores, seed) {
   # Obtain
   i = 1:NumCores
   temp = foreach(i, .packages = "BART") %dopar% {
-    set.seed(seed + i)
     SomePost = BART::surv.bart(times = Times,
                                delta = Event,
                                ndpost = HowMany + (i == NumCores)*leftover)

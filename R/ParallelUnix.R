@@ -10,16 +10,14 @@
 #' @param TestX Explanatory variables for test (out of sample) data. Must be a matrix and 
 #' have the same structure as TrainX 
 #' @param NumCores Number of cores to run on, default is 2
-#' @param seed Random seed, only used for parallelization
 
 
-ParallelUnix = function(TrainX, Times, Event, TestX, NumCores, seed) {
+ParallelUnix = function(TrainX, Times, Event, TestX, NumCores) {
   temp = mc.surv.bart(x.train = TrainX,
                times = Times,
                delta = Event,
                x.test = TestX,
-               mc.cores = NumCores,
-               seed = seed)
+               mc.cores = NumCores)
   
   return(temp$surv.test)
 }
