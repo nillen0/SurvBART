@@ -6,13 +6,14 @@
 #' @param CensoringRate Desired Censoring Rate, either 0.2 or 0.5
 #' @param Parallel Run the function in parallel
 #' @param NumCores If parallel, number of cores to use
+#' @param seed Set random seed number
 #' @export
 
-Simulation = function(OneSample = T, n, CensoringRate, Parallel = F, NumCores = 2) {
+Simulation = function(OneSample = T, n, CensoringRate, Parallel = F, NumCores = 2, seed) {
   
   if (OneSample == T) {
     # One Sample Code ----
-    
+    set.seed(seed)
     # Simulate Data
     Data = SimulateData(n = n, censoring.rate = CensoringRate, TwoSample = F)
     

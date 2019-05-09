@@ -5,7 +5,7 @@
 \title{Perform one iteration of simulation}
 \usage{
 Simulation(OneSample = T, n, CensoringRate, Parallel = F,
-  NumCores = 2)
+  NumCores = 2, seed)
 }
 \arguments{
 \item{OneSample}{Perform simulation described in "One-Sample Simulation" section}
@@ -17,6 +17,8 @@ Simulation(OneSample = T, n, CensoringRate, Parallel = F,
 \item{Parallel}{Run the function in parallel}
 
 \item{NumCores}{If parallel, number of cores to use}
+
+\item{seed}{Set random seed number}
 }
 \description{
 Performs one iteration of the simulation described in Sparapani et al.
