@@ -22,6 +22,8 @@ ParallelWindows = function(TrainX, Times, Event, TestX, NumCores) {
   
   # Obtain
   i = 1:NumCores
+  cl = makeCluster(NumCores)
+  registerDoParallel(cl)
   temp = foreach(i, .packages = "BART") %dopar% {
     SomePost = BART::surv.bart(times = Times,
                                delta = Event,
