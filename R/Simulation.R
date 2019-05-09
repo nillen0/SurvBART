@@ -4,6 +4,8 @@
 #' @param OneSample Perform simulation described in "One-Sample Simulation" section
 #' @param n Sample Size
 #' @param CensoringRate Desired Censoring Rate, either 0.2 or 0.5
+#' @param Parallel Run the function in parallel
+#' @param NumCores If parallel, number of cores to use
 #' @export
 
 Simulation = function(OneSample = T, n, CensoringRate, Parallel = F, NumCores = 2) {

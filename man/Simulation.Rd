@@ -4,7 +4,8 @@
 \alias{Simulation}
 \title{Perform one iteration of simulation}
 \usage{
-Simulation(OneSample = T, n, CensoringRate)
+Simulation(OneSample = T, n, CensoringRate, Parallel = F,
+  NumCores = 2)
 }
 \arguments{
 \item{OneSample}{Perform simulation described in "One-Sample Simulation" section}
@@ -12,6 +13,10 @@ Simulation(OneSample = T, n, CensoringRate)
 \item{n}{Sample Size}
 
 \item{CensoringRate}{Desired Censoring Rate, either 0.2 or 0.5}
+
+\item{Parallel}{Run the function in parallel}
+
+\item{NumCores}{If parallel, number of cores to use}
 }
 \description{
 Performs one iteration of the simulation described in Sparapani et al.
