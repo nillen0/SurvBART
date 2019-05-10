@@ -46,7 +46,7 @@ AnalyzeResults = function(Results, ReturnOOR = FALSE) {
   temp = list("Bias" = Bias, "RMSE" = RMSE, "Coverage" = Coverage)
   
   if (ReturnOOR == T) {
-    temp$OutOfRange = OutOfRange
+    temp$OutOfRange = OutOfRange/400
   }
   
   return(temp)
