@@ -4,10 +4,12 @@
 \alias{AnalyzeResults}
 \title{Analyse results}
 \usage{
-AnalyzeResults(Results)
+AnalyzeResults(Results, OutOfRange = FALSE)
 }
 \arguments{
 \item{Results}{A list of results from multiple runs of Simulation()}
+
+\item{OutOfRange}{Logical value. Do you want to know how many values were inestimable?}
 }
 \description{
 This function analyses results from the Simulation() function. Given a list of results

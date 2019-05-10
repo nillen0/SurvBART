@@ -4,9 +4,10 @@
 #' from many runs of Simulation(), this function outputs a matrix of bias, RMSE, and coverage
 #' probabilities
 #' @param Results A list of results from multiple runs of Simulation()
+#' @param OutOfRange Logical value. Do you want to know how many values were inestimable?
 #' @export
 
-AnalyzeResults = function(Results) {
+AnalyzeResults = function(Results, OutOfRange = FALSE) {
   CoverageMats = lapply(Results, function(x) x$CoverageMat)
   EstimatedMats = lapply(Results, function(x) x$EstimateMat)
   
@@ -40,7 +41,13 @@ AnalyzeResults = function(Results) {
   # Summarise Coverage:
   Coverage = Reduce("+", CoverageMats)/400
   
-  list("Bias" = Bias, "RMSE" = RMSE, "Coverage" = Coverage, "NotEstimated" = OutOfRange)
+  temp = list("Bias" = Bias, "RMSE" = RMSE, "Coverage" = Coverage)
+  
+  if (OutOfRange == T) {
+    temp$OutOfRange =  OutOfRange
+  }
+  
+  return(temp)
 
 }
 
