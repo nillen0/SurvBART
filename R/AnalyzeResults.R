@@ -29,6 +29,7 @@ AnalyzeResults = function(Results) {
     Dist[[i]][is.infinite(Dist[[i]])] = 0
   }
   
+  
   # Mean Bias:
   Bias = Reduce("+", Dist)/Denoms
   
@@ -39,7 +40,7 @@ AnalyzeResults = function(Results) {
   # Summarise Coverage:
   Coverage = Reduce("+", CoverageMats)/400
   
-  list("Bias" = Bias, "RMSE" = RMSE, "Coverage" = Coverage)
+  list("Bias" = Bias, "RMSE" = RMSE, "Coverage" = Coverage, "NotEstimated" = OutOfRange)
 
 }
 
