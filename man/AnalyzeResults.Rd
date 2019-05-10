@@ -4,12 +4,13 @@
 \alias{AnalyzeResults}
 \title{Analyse results}
 \usage{
-AnalyzeResults(Results, OutOfRange = FALSE)
+AnalyzeResults(Results, ReturnOOR = FALSE)
 }
 \arguments{
 \item{Results}{A list of results from multiple runs of Simulation()}
 
-\item{OutOfRange}{Logical value. Do you want to know how many values were inestimable?}
+\item{ReturnORR}{Logical value. Do you want to know how many quantile estimates
+were inestimable because the quantile was outside of the range of the data?}
 }
 \description{
 This function analyses results from the Simulation() function. Given a list of results

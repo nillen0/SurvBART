@@ -4,10 +4,11 @@
 #' from many runs of Simulation(), this function outputs a matrix of bias, RMSE, and coverage
 #' probabilities
 #' @param Results A list of results from multiple runs of Simulation()
-#' @param OutOfRange Logical value. Do you want to know how many values were inestimable?
+#' @param ReturnORR Logical value. Do you want to know how many quantile estimates
+#' were inestimable because the quantile was outside of the range of the data?
 #' @export
 
-AnalyzeResults = function(Results, OutOfRange = FALSE) {
+AnalyzeResults = function(Results, ReturnOOR = FALSE) {
   CoverageMats = lapply(Results, function(x) x$CoverageMat)
   EstimatedMats = lapply(Results, function(x) x$EstimateMat)
   
@@ -43,8 +44,8 @@ AnalyzeResults = function(Results, OutOfRange = FALSE) {
   
   temp = list("Bias" = Bias, "RMSE" = RMSE, "Coverage" = Coverage)
   
-  if (OutOfRange == T) {
-    temp$OutOfRange =  OutOfRange
+  if (ReturnOOR == T) {
+    temp$OutOfRange = OutOfRange
   }
   
   return(temp)
