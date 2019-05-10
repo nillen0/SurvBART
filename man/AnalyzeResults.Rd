@@ -9,7 +9,7 @@ AnalyzeResults(Results, ReturnOOR = FALSE)
 \arguments{
 \item{Results}{A list of results from multiple runs of Simulation()}
 
-\item{ReturnORR}{Logical value. Do you want to know how many quantile estimates
+\item{ReturnOOR}{Logical value. Do you want to know how many quantile estimates 
 were inestimable because the quantile was outside of the range of the data?}
 }
 \description{
