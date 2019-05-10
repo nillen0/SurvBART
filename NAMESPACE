@@ -3,6 +3,7 @@
 export(AnalyzeQuants)
 export(AnalyzeResults)
 export(CredibleInt)
+export(GatherResults)
 export(KMQuant)
 export(ObtainPost)
 export(ParallelWindows)
