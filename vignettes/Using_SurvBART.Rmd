@@ -1,0 +1,103 @@
+---
+title: "Using SurvBART"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Using_SurvBART}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Installation
+
+To install the most recent update of SurvBART from github, run:
+
+```{r installation, eval = FALSE}
+devtools::install_github("nillen0/SurvBART")
+```
+
+# Getting Started
+
+Once we have the package installed, we need to load the package:
+
+```{r setup, eval = FALSE}
+library(SurvBART)
+```
+
+In this tutorial, we will run fit a survival BART model using simulated data. To simulate data with a sample size of 100 and a censorign rate of $50\%$ run:
+
+```{r Simulate Data, eval = FALSE}
+set.seed(807)
+Data = SimulateData(n = 100, censoring.rate = 0.5)
+```
+
+# Running SurvBART
+
+Once we have our data we need to draw from the posterior distribution of the survival probabilities at each time point. Because this is computationally efficient, we recommend parallelizing the process. Using the `parallel` and `NumCores` statements in the function `ObtainPost()`, we can tell R to draw our posterior draws from parallel chains on `NumCores` many cores.
+
+```{r Draw from posterior, eval = FALSE}
+PosteriorDraws = ObtainPost(Times = Data$time,
+           Event = Data$event,
+           parallel = T,
+           NumCores = 2)
+```
+
+This function outputs a list with two elements. The first `surv` is a matrix of posterior draws, and the second `time` is a vector of the unique time points observed in the data.
+
+Using these draws we can find the estimated survival probabilities at each unique time:
+
+```{r mean survival, eval = FALSE}
+SurvEst(PosteriorDraws = PosteriorDraws$surv)
+```
+
+We can plot estimated survival curves with credible interval bounds using:
+
+```{r plot, eval = FALSE}
+PlotSurv(PosteriorDraws = PosteriorDraws$surv,
+         UniqueTimes = PosteriorDraws$time,
+         CredLevel = 0.95)
+```
+
+To obtain an estimated quantile with credible interval:
+
+```{r estimate quantile, eval = FALSE}
+QuantEst(PosteriorDraws = PosteriorDraws$surv,
+         Times = PosteriorDraws$time,
+         Quantiles = c(0.1, 0.25, 0.5, 0.75, 0.9),
+         CredLevel = 0.95)
+```
+
+Note, some values may be NA. This occurs when there is enough censoring in the data that certain quantiles of survival are not observed in the data. 
+
+
+If we want to compare quantile estimates of BART with those of KM or Weibull regression we can run:
+
+```{r compare, eval = FALSE}
+Quants = QuantAll(PosteriorDraws = PosteriorDraws$surv,
+         Times = Data$time,
+         Event = Data$event,
+         Quantiles = c(0.1, 0.25, 0.5, 0.75, 0.9),
+         ConfLevel = 0.95)
+
+Quants
+```
+
+We can summarise the point estimates of quantiles and coverage of credible/confidence intervals of this output using:
+
+```{r, eval = FALSE}
+AnalyzeQuants(QuantMatrix = Quants,
+              Quantiles = c(0.1, 0.25, 0.5, 0.75, 0.9),
+              shape = 0.8, scale = 2.5)
+```
+
+To replicate this entire process at once, we provide the wrapper function:
+
+```{r wrap, eval = FALSE}
+Simulation(n = 100, CensoringRate = 0.5, Parallel = T, NumCores = 2, seed = 807)
+```
