@@ -13,7 +13,7 @@ GatherResults = function(file.dir = NULL) {
                 n200 = list(c20 = list(),
                             c50 = list()))
   
-  for (n in c(50, 100)){
+  for (n in c(50, 100, 200)){
     for(CensoringRate in c(2, 5)) {
       for(i in 1:400) {
         if (n == 50) {
